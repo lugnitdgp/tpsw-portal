@@ -11,20 +11,20 @@ class User
   ## Database authenticatable
   field :email,                 type: String, default: ""
   field :name,                  type: String, default: ""
-  field :roll_no,               type: String, default: ''
-  field :cgpa,                  type: Float
+  field :roll_no,               type: String, default: ""
+  field :cgpa,                  type: String, default: ""
   field :present_address,       type: String, default: ""
   field :permanent_address,     type: String, default: ""
-  field :sgpa,                  type: Array, default: []
+  field :sgpa,                  type: Array,  default: []
   field :dept,                  type: String, default: ""
   field :phone,                 type: String, default: ""
   field :pan_no,                type: String, default: ""
   field :placed_at,             type: String, default: ""
   field :ug_pg,                 type: String, default: ""
 
-  field :u_id,                   type: Integer, default: ''
+  field :u_id,                  type: Integer, default: ""
   field :encrypted_password,    type: String, default: ""
-  field :roles_mask,            type: Integer,default: ''
+  field :roles_mask,            type: Integer,default: ""
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
