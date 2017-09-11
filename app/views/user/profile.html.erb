@@ -35,7 +35,7 @@
 					      	<ul>
 					        	<% @info.each do |key,value| %>
 						        	<div class="input-field col s12">	
-							        	<input id = "<%= key %>" name="<%= key %>" value="<%= value %>" type="text" class="validate" disabled="true">
+							        	<input id = "<%= key %>" name="user[<%= key %>]" value="<%= value %>" type="text" class="validate" disabled="true">
 							        	<label for="<%= key %>">
 								        	<font><%= key.split('_').map(&:capitalize).join(' ') %></font>
 							        	</label>
