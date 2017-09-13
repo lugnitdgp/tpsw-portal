@@ -32,14 +32,17 @@
 
 <html>
   <head>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>TPSW</title>
+    
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
-  <body>
+  <body style="background-color: #e0f2f1">
     
     <div>
       <nav style="background-color: rgb(27, 170, 170);">
@@ -82,6 +85,8 @@
     </div>
       <%= yield %>
 
-
+    <div class="pen-title" style="">
+      <span>Developed <i class='fa fa-code'></i> by <a href='https://github.com/lugnitdgp'>GLUG NITD</a></span>
+    </div>
   </body>
 </html>
