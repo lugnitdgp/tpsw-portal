@@ -1,45 +1,123 @@
+<style>
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 250px;
+    overflow-y: auto;
+}
+</style>
+
+<script type="text/javascript">
+    function selectElementContents(el) {
+        var body = document.body, range, sel;
+        if (document.createRange && window.getSelection) {
+            range = document.createRange();
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            try {
+                range.selectNodeContents(el);
+                sel.addRange(range);
+            } catch (e) {
+                range.selectNode(el);
+                sel.addRange(range);
+            }
+            document.execCommand("copy");
+
+        } else if (body.createTextRange) {
+            range = body.createTextRange();
+            range.moveToElementText(el);
+            range.select();
+            range.execCommand("Copy");
+        }
+    }
+</script>
+
+
 <h1>Finalize </h1>
 These are registered students for <%= @object.name %>
 <br/><br/>
 
-<!-- Placement Students List -->
 <% fields =  @object.columns.split(',') %>
-<% if @object.placement? %>
-  <b>List of Placement Students</b>
-  <table>
-    <tr>
-      <% fields.each do |field| %>
-        <th><%= field %></th>
-      <% end %>
-    </tr>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Placement Students</button>
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-    <% @object.registrations.where(type:"placement").each do |registration| %>
-    <tr>
-      <% fields.each do |field| %>
-        <td><%= registration.user[field] %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
-<% end %>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">List of Students for Placements</h4>
+      </div>
+      <div class="modal-body">
+        <a onclick="selectElementContents( document.getElementById('placement') );">Copy Table</a>
+        <% if @object.placement? %>
+          <table class="table" id="placement">
+            <tr>
+              <% fields.each do |field| %>
+                <th><%= field.split('_').map(&:capitalize).join(' ') %></th>
+              <% end %>
+            </tr>
 
-<!-- Intern Students List -->
-<br/><br/>
-<% if @object.intern? %>
-  <b>List of intern Students</b><br/>
-  <table>
-    <tr>
-      <% fields.each do |field| %>
-        <th><%= field %></th>
-      <% end %>
-    </tr>
+            <% @object.registrations.where(type:"placement").each do |registration| %>
+            <tr>
+              <% fields.each do |field| %>
+                <td><%= registration.user[field] %></td>
+              <% end %>
+            </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
-    <% @object.registrations.where(type:"intern").each do |registration| %>
-    <tr>
-      <% fields.each do |field| %>
-        <td><%= registration.user[field] %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
-<% end %>
+  </div>
+</div>
+
+<br/>
+<br/>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Intern Students</button>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">List of Students for Intern</h4>
+      </div>
+      <div class="modal-body">
+        <a onclick="selectElementContents( document.getElementById('intern') );">Copy Table</a>
+        <br/>
+        <% if @object.intern? %>
+          <table class="table" id="intern">
+            <tr>
+              <% fields.each do |field| %>
+                <th><%= field.split('_').map(&:capitalize).join(' ') %></th>
+              <% end %>
+            </tr>
+
+            <% @object.registrations.where(type:"intern").each do |registration| %>
+            <tr>
+              <% fields.each do |field| %>
+                <td><%= registration.user[field] %></td>
+              <% end %>
+            </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
