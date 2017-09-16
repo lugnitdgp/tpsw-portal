@@ -25,6 +25,28 @@
         visibility:hidden;
     }
 }
+/* Pen Title */
+.pen-title {
+  padding: 50px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.pen-title h1 {
+  margin: 0 0 20px;
+  font-size: 48px;
+  font-weight: 300;
+}
+.pen-title span {
+  font-size: 12px;
+}
+.pen-title span .fa {
+  color: rgb(27, 170, 170);
+}
+.pen-title span a {
+  color: rgb(27, 170, 170);
+  font-weight: 600;
+  text-decoration: none;
+}
 </style>
 
 
@@ -85,8 +107,8 @@
     </div>
       <%= yield %>
 
-    <div class="pen-title" style="">
-      <span>Developed <i class='fa fa-code'></i> by <a href='https://github.com/lugnitdgp'>GLUG NITD</a></span>
+    <div class="pen-title" >
+      <span>Developed by <a href='https://github.com/lugnitdgp'>GLUG NITD</a></span>
     </div>
   </body>
 </html>

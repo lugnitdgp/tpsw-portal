@@ -54,42 +54,6 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-/* Scroll To Bottom */
-#codepen, #portfolio {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #363636;
-  width: 56px;
-  height: 56px;
-  border-radius: 100%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-transition: 0.3s ease;
-  transition: 0.3s ease;
-  color: #ffffff;
-  text-align: center;
-}
-#codepen i, #portfolio i {
-  line-height: 56px;
-}
-#codepen:hover, #portfolio:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-/* CodePen */
-#portfolio {
-  bottom: 96px;
-  right: 36px;
-  background: rgb(27, 170, 170);
-  width: 44px;
-  height: 44px;
-  -webkit-animation: buttonFadeInUp 1s ease;
-  animation: buttonFadeInUp 1s ease;
-}
-#portfolio i {
-  line-height: 44px;
-}
-
 /* Container */
 .container {
   position: relative;
@@ -170,11 +134,6 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -webkit-transition: .3s ease;
   transition: .3s ease;
-  /* Title */
-  /* Inputs */
-  /* Button */
-  /* Footer */
-  /* Alt Card */
 }
 .card:first-child {
   background: #fafafa;
@@ -196,7 +155,7 @@ body {
 }
 .card .input-container {
   position: relative;
-  margin: 0 60px 50px;
+  margin: 0 50px 45px;
 }
 .card .input-container input {
   outline: none;
@@ -204,7 +163,7 @@ body {
   position: relative;
   background: none;
   width: 100%;
-  height: 60px;
+  height: 40px;
   border: 0;
   color: #212121;
   font-size: 24px;
@@ -225,7 +184,7 @@ body {
 }
 .card .input-container label {
   position: absolute;
-  top: 0;
+  top: -15px;
   left: 0;
   color: #757575;
   font-size: 24px;
@@ -237,7 +196,7 @@ body {
 .card .input-container .bar {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 10px;
   background: #757575;
   width: 100%;
   height: 1px;
@@ -343,10 +302,6 @@ body {
   padding: 0;
   -webkit-transition: .3s ease;
   transition: .3s ease;
-  /* Toggle */
-  /* Title */
-  /* Input */
-  /* Button */
 }
 .card.alt .toggle {
   position: relative;
@@ -430,19 +385,6 @@ body {
   display: none;
 }
 
-/* Keyframes */
-@-webkit-keyframes buttonFadeInUp {
-  0% {
-    bottom: 30px;
-    opacity: 0;
-  }
-}
-@keyframes buttonFadeInUp {
-  0% {
-    bottom: 30px;
-    opacity: 0;
-  }
-}
 </style>
 
 
@@ -467,12 +409,12 @@ body {
     <form action="/users/sign_in" method="post">
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <div class="input-container">
-        <input type="email" id="email" name="user[email]" required="required"/>
+        <input type="email" style="border-bottom: 0px; box-shadow: 0 0px" id="email" name="user[email]" required="required"/>
         <label for="email">E-mail ID</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="password" name="user[password]"  required="required"/>
+        <input type="password" style="border-bottom: 0px; box-shadow: 0 0px" id="password" name="user[password]"  required="required"/>
         <label for="password">Password</label>
         <div class="bar"></div>
       </div>
@@ -494,18 +436,23 @@ body {
     <form action="/users" method="post">
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <div class="input-container">
-        <input type="email" id="email" name="user[email]" required="required"/>
+        <input type="email" id="email" style="border-bottom: 0px; box-shadow: 0 0px" name="user[email]" required="required"/>
         <label for="email">E-Mail</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="password" name="user[password]" required="required"/>
+        <input type="text" id="roll_no" style="border-bottom: 0px; box-shadow: 0 0px" name="user[roll_no]" required="required"/>
+        <label for="roll_no">Roll Number</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="password" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password]" required="required"/>
         <label for="password">Password</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="password" required="required"/>
-        <label for="password">Repeat Password</label>
+        <input type="password" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password_confirmation]" required="required"/>
+        <label for="password">Confirm Password</label>
         <div class="bar"></div>
       </div>
       <div class="button-container">

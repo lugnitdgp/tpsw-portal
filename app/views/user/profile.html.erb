@@ -1,55 +1,274 @@
 <script>
-  $(document).ready(function(){
-	$("#edit_btn").click(function(event){
-		event.preventDefault();
-		$("input").prop('disabled', false);
-	});
-});
-
-</script>
-<style>
-	@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
-	@import url(https://fonts.googleapis.com/css?family=Asap);
-	#title {
-			font-family: Fjalla One
+  function editfunc() {
+			event.preventDefault();
+			$("input").prop('disabled', false);
+			var divx = document.getElementById("submit-btn-div");
+			divx.style.display = "block";
 	}
+</script>
+
+
+<!DOCTYPE html>
+
+<style type="text/css">
+body {
+  background: #e9e9e9;
+  color: #666666;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Pen Title */
+.pen-title {
+  padding: 50px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.pen-title h1 {
+  margin: 0 0 20px;
+  font-size: 48px;
+  font-weight: 300;
+}
+.pen-title span {
+  font-size: 12px;
+}
+.pen-title span .fa {
+  color: rgb(27, 170, 170);
+}
+.pen-title span a {
+  color: rgb(27, 170, 170);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Rerun */
+.rerun {
+  margin: 0 0 30px;
+  text-align: center;
+}
+.rerun a {
+  cursor: pointer;
+  display: inline-block;
+  background: rgb(27, 170, 170);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 10px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.rerun a:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* Container */
+.container {
+  position: relative;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto 100px;
+}
+.container.active .card:first-child {
+  background: #f2f2f2;
+  margin: 0 15px;
+}
+.container.active .card:nth-child(2) {
+  background: #fafafa;
+  margin: 0 10px;
+}
+/* Card */
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 60px 0 40px 0;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card:first-child {
+  background: #fafafa;
+  height: 10px;
+  border-radius: 5px 5px 0 0;
+  margin: 0 10px;
+  padding: 0;
+}
+.card .title {
+  position: relative;
+  z-index: 1;
+  border-left: 5px solid rgb(27, 170, 170);
+  margin: 0 0 35px;
+  padding: 10px 0 10px 50px;
+  color: rgb(27, 170, 170);
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.card .input-container {
+  position: relative;
+  margin: 0 40px -10px;
+}
+.card .input-container input {
+  outline: none;
+  z-index: 1;
+  position: relative;
+  background: none;
+  width: 100%;
+  height: 100px;
+  border: 0;
+  color: #212121;
+  font-size: 24px;
+  font-weight: 400;
+}
+.card .input-container input:focus ~ label {
+  color: #9d9d9d;
+  -webkit-transform: translate(-12%, -50%) scale(0.75);
+          transform: translate(-12%, -50%) scale(0.75);
+}
+.card .input-container input:focus ~ .bar:before, .card .input-container input:focus ~ .bar:after {
+  width: 50%;
+}
+.card .input-container input:valid ~ label {
+  color: #9d9d9d;
+  -webkit-transform: translate(-12%, -50%) scale(0.75);
+          transform: translate(-12%, -50%) scale(0.75);
+}
+.card .input-container label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #757575;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 40px;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+.card .input-container .bar {
+  position: absolute;
+  left: 0;
+  bottom: 35px;
+  background: #757575;
+  width: 100%;
+  height: 1px;
+}
+.card .input-container .bar:before, .card .input-container .bar:after {
+  content: '';
+  position: absolute;
+  background: rgb(27, 170, 170);
+  width: 0;
+  height: 2px;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+}
+.card .input-container .bar:before {
+  left: 50%;
+}
+.card .input-container .bar:after {
+  right: 50%;
+}
+.card .button-container {
+  margin: 0 60px;
+  text-align: center;
+}
+.card .button-container button {
+  outline: 0;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: 0;
+  width: 240px;
+  border: 2px solid #e3e3e3;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  overflow: hidden;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card .button-container button span {
+  position: relative;
+  z-index: 1;
+  color: #ddd;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card .button-container button:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: rgb(27, 170, 170);
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin: -15px 0 0 -15px;
+  opacity: 0;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
+  border-color: rgb(27, 170, 170);
+}
+.card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
+  color: rgb(27, 170, 170);
+}
+.card .button-container button:active span, .card .button-container button:focus span {
+  color: #ffffff;
+}
+.card .button-container button:active:before, .card .button-container button:focus:before {
+  opacity: 1;
+  -webkit-transform: scale(10);
+  transform: scale(10);
+}
+
 </style>
-<div class="container">
-    <div class="card">
-       	<!--  header-->
-       	<div class="container">
-       		<div class="row" >
-	                    <div class="col s4 offset-s4">
-	                    <span id="title" class="card-title"><h2 align="center" style="font-size: 3vw;">PROFILE</h2></span>
-	                	</div>
-	                	<div class="col s3 m3 l3"></div>
-	                	<div class="col s1 m1 l1" style="padding-top: 3%;padding-left:4% ">
-								<a class="btn tooltipped btn-floating btn-large waves-effect waves-light red" id="edit_btn" data-position="bottom" data-delay="50" data-tooltip="Edit Details">
-								<i class="material-icons" style="">edit</i></a>						
-	            		</div>
-	        </div>
-	        <div class="row">
-		<!-- FORM DETAIL -->
-					    <form action='/user/update_form' method='post'>
-					    	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-					      	<ul>
-					        	<% @info.each do |key,value| %>
-						        	<div class="input-field col s12">	
-							        	<input id = "<%= key %>" name="user[<%= key %>]" value="<%= value %>" type="text" class="validate" disabled="true">
-							        	<label for="<%= key %>">
-								        	<font><%= key.split('_').map(&:capitalize).join(' ') %></font>
-							        	</label>
-							        </div>
-						        <%end%>
-					        	<div align="center">
-									<button class="btn waves-effect waves-light" type="submit" value="Submit" name="action">
-									   SUBMIT
-									   <i class="material-icons right">send</i>
-									</button>
-						        </div>
-					        </ul>
-					    </form>
-			</div>
-		</div>
+
+
+
+<html >
+<head>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+  
+</head>
+
+<body>
+	<div class="container">
+	  <div class="card"></div>
+	  <div class="card">
+	    <h1 class="title">Profile <a onclick="editfunc()" class="btn tooltipped btn-floating btn-large waves-effect waves-light red" id="edit_btn" data-position="bottom" data-delay="50" data-tooltip="Edit Details">
+				<i class="material-icons" style="">edit</i></a></h1>
+	    <form action="/user/update_form" method="post">
+	      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	      <ul>
+	      		<% @info.each do |key,value| %>
+		      		<div class="input-container">
+		      			<input type="text" style="border-bottom: 0px; box-shadow: 0 0px" id = "inputs" name="user[<%= key %>]" value="<%= value %>" class="validate" disabled="true" required="required"/>
+						<label for="<%= key %>">
+							<font><%= key.split('_').map(&:capitalize).join(' ') %></font>
+						</label>
+						<div class="bar"></div>
+					</div>
+				<% end %>
+		  </ul>
+	      <div id="submit-btn-div" class="button-container" style="display: none" type="submit" value="Submit" name="action">
+	        <button id="submit-btn"><span>Update Profile</span></button>
+	      </div>
+	     
+	    </form>
+
+
+	  </div>
 	</div>
-</div>
+  	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</body>
+</html>
