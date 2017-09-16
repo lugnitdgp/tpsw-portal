@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   authenticate :user, ->(user) { user.roles_mask == 1 } do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
-  devise_for :users
+  # devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
