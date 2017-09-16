@@ -51,13 +51,21 @@ class User
   # field :locked_at,       type: Time
 
   # validates :uid, uniqueness: true
-  before_create :assign_uid
+  before_create :assign_uid_and_new_fields
   before_save :enforce_standard
   has_many :registrations
   validates_uniqueness_of :roll_no
 
-  def assign_uid
-    self.u_id=User.last.u_id + 1
+  def assign_uid_and_new_fields
+    self.u_id = User.last.u_id + 1
+    new_fields = User.last.attributes.keys
+    new_fields -= %w{_id encrypted_password sign_in_count roles_mask reset_password_token
+           reset_password_sent_at remember_created_at sign_in_count u_id
+           current_sign_in_at last_sign_in_at current_sign_in_ip last_sign_in_ip}
+    new_fields -= User.first.fields.keys
+    new_fields.each do |field|
+      self[field]=""
+    end
   end
 
   def enforce_standard
