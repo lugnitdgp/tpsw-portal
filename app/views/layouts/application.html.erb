@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <style type="text/css">
   #hideMe {
-    -moz-animation: cssAnimation 0s ease-in 2s forwards;
+    -moz-animation: cssAnimation 0s ease-in 4s forwards;
     /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 4s forwards;
     /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 2s forwards;
+    -o-animation: cssAnimation 0s ease-in 4s forwards;
     /* Opera */
-    animation: cssAnimation 0s ease-in 2s forwards;
+    animation: cssAnimation 0s ease-in 4s forwards;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
-@keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        overflow:hidden;
-    }
-}
-@-webkit-keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        visibility:hidden;
-    }
-}
-/* Pen Title */
-.pen-title {
-  padding: 50px 0;
-  text-align: center;
-  letter-spacing: 2px;
-}
-.pen-title h1 {
-  margin: 0 0 20px;
-  font-size: 48px;
-  font-weight: 300;
-}
-.pen-title span {
-  font-size: 12px;
-}
-.pen-title span .fa {
-  color: rgb(27, 170, 170);
-}
-.pen-title span a {
-  color: rgb(27, 170, 170);
-  font-weight: 600;
-  text-decoration: none;
-}
+  }
+  @keyframes cssAnimation {
+      to {
+          width:0;
+          height:0;
+          overflow:hidden;
+      }
+  }
+  @-webkit-keyframes cssAnimation {
+      to {
+          width:0;
+          height:0;
+          visibility:hidden;
+      }
+  }
+  /* Pen Title */
+  .pen-title {
+    padding: 50px 0;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  .pen-title h1 {
+    margin: 0 0 20px;
+    font-size: 48px;
+    font-weight: 300;
+  }
+  .pen-title span {
+    font-size: 12px;
+  }
+  .pen-title span .fa {
+    color: rgb(27, 170, 170);
+  }
+  .pen-title span a {
+    color: rgb(27, 170, 170);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
 </style>
 
 
@@ -56,6 +57,7 @@
   <head>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
     <title>TPSW</title>
     
     <%= csrf_meta_tags %>
@@ -64,17 +66,16 @@
 
   </head>
 
-  <body style="background-color: #e0f2f1">
+  <body style="background-color: #f3f5f6">
     
     <div>
       <nav style="background-color: rgb(27, 170, 170);">
         <div class="nav-wrapper">
           <a href="/"><font style="font-size: 200%; padding: 1em"> NIT Durgapur Placement Portal</font></a>
           <ul id="dropdown1" class="dropdown-content">
-          <li><a href="/users/edit">Security</a></li>
-          <li><a href="/user/profile" >Profile</a></li>
-          <li class="divider"></li>
-          <li> <%= link_to destroy_user_session_path, method: :delete do %>Sign Out<% end %></li>
+            <li><a href="/user/profile" >Profile</a></li>
+            <li class="divider"></li>
+            <li> <%= link_to destroy_user_session_path, method: :delete do %>Sign Out<% end %></li>
           </ul>
 
           <ul id="nav-mobile" class="right hide-on-med-and-down">  
@@ -86,7 +87,7 @@
             <% end %>
             </li>
             <% if current_user!=nil %>
-            <li><a class="dropdown-button" data-position="bottom" data-delay="50" data-tooltip="Settings" href="#!" data-activates="dropdown1"><i class="material-icons right" style="font-size: 350%">apps</i></a></li>
+            <li><a class="tooltipped dropdown-button btn-flat btn-floating" data-beloworigin="true" style="background-color: rgb(27, 170, 170);font-size: 10px" data-position="left" data-delay="50" data-tooltip="Settings" href="#!" data-activates="dropdown1"><i class="material-icons right" style="font-size: 350%">apps</i></a></li>
             <% end %>
           </ul>
         </div>
@@ -98,14 +99,19 @@
 
     <br/>
     
-    
-    <%- flash.each do |name, msg| -%>
-    <div id='hideMe' align="right" style="color: #64dd17;padding-right: 2em">
-        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-        </div>
-        <%- end -%>
+    <div class="contaianer">
+      <div class="row">
+        <div class="col">&nbsp</div>
+            <%- flash.each do |name, msg| -%>
+              <div style="font-size: 12px"  id='hideMe' align="center">
+                  <button disabled style="width:15%; min-width: 200px;border-color:rgb(27, 170, 170) ;background-color: #ffffff">
+                  <%= content_tag :div, msg, :id => "flash_#{name}", :class => "col s11" if msg.is_a?(String) %> 
+                  </button>
+              </div>
+            <%- end -%>
+      </div>
     </div>
-      <%= yield %>
+    <%= yield %>
 
     <div class="pen-title" >
       <span>Developed by <a href='https://github.com/lugnitdgp'>GLUG NITD</a></span>
