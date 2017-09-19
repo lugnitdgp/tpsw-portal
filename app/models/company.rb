@@ -25,7 +25,7 @@ class Company
 
   def add_fields_to_user
     new_fields = []
-    array = self.columns.split(",")
+    array = self.columns.split(" ")
     fields = User.first.attributes.keys
     fields -= %w{_id encrypted_password sign_in_count roles_mask reset_password_token
            reset_password_sent_at remember_created_at sign_in_count u_id

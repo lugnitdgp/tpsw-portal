@@ -1,0 +1,52 @@
+<% fields = current_user.attributes.keys %>
+<% fields -= %w{_id encrypted_password sign_in_count roles_mask reset_password_token
+       reset_password_sent_at remember_created_at sign_in_count u_id placed_at c_at
+       current_sign_in_at last_sign_in_at current_sign_in_ip last_sign_in_ip} %>
+
+<div class="taglist">
+<% fields.each_with_index do |field,index| %>
+  <% if index%7 == 0 and index!=0%>
+  <br/>
+  <% end %>
+  <% if @object.columns.include?(field) %>
+    <input checked="checked" class="columns_checkbox" type="checkbox" id="<%= field %>" />
+    <label for="<%= field %>"><%= field.split('_').map(&:capitalize).join(' ') %></label>&nbsp &nbsp
+  <% else %>
+    <input class="columns_checkbox" type="checkbox" id="<%= field %>" />
+    <label for="<%= field %>"><%= field.split('_').map(&:capitalize).join(' ') %></label>&nbsp &nbsp
+  <% end %>
+<% end %>
+</div>
+
+<br/><br/>
+<div id="new_columns">
+</div>
+<!-- Enter new fields <a id="new_column_btn" style="cursor: pointer;">here</a> -->
+Enter new fields sepatared with spaces
+<textarea class="form-control" name="company[columns]" id="company_columns" cols="48" rows="3">
+</textarea>
+
+
+<script>
+$(document).ready(function(){
+
+    $("#company_columns").text('');
+    $(".taglist :checked").each(function(){
+         $("#company_columns").append( $(this).attr('id') + " ");
+    });
+
+    $("#new_column_btn").click(function() {
+        $("#new_columns").append('<input type="text" class="form-control" id="new_columns_field">');
+
+    });
+
+    $(".taglist input").click(function(){
+         $("#company_columns").text('');
+         $(".taglist :checked").each(function(){
+              $("#company_columns").append( $(this).attr('id') + " ");
+         });
+    });
+
+
+});
+</script>
