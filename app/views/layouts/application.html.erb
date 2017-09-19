@@ -73,6 +73,11 @@
         <div class="nav-wrapper">
           <a href="/"><font style="font-size: 200%; padding: 1em"> NIT Durgapur Placement Portal</font></a>
           <ul id="dropdown1" class="dropdown-content">
+            <% if current_user!=nil %>  
+              <% if current_user.roles_mask == 1 %>
+                <li><a href="/admin">Admin</a></li>
+              <% end %>
+            <% end %>
             <li><a href="/user/profile" >Profile</a></li>
             <li class="divider"></li>
             <li> <%= link_to destroy_user_session_path, method: :delete do %>Sign Out<% end %></li>
@@ -81,7 +86,7 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">  
             <li style="font-size: 150%">
             <% if current_user!=nil %>
-              <%= current_user.name %>
+              <%= current_user.name %>  
             <% else %>
               <%= link_to new_user_session_path do %>Log in/Sign up<% end %>
             <% end %>
