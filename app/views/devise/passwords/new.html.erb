@@ -1,16 +1,251 @@
-<h2>Forgot your password?</h2>
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+	@import url(https://fonts.googleapis.com/css?family=Asap);
+	.container 	{
+					opacity: 1;
+				}
+	.rowheader 	{
+					background-color: #e65100;
+					padding:2em;
+					color: #ffe0b2;
+					font-family: Fjalla One;
+				}
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+	.rowbody 	{
+					background-image: linear-gradient(to top, #ffffff, #ffffff);
+					padding:2em;
+					border: 1px;
+					color:#6a1b9a;
+					font-size: 150%;
+					font-family: Asap;
+    				text-transform: capitalize;
+    			}
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+</style>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+<!DOCTYPE html>
+
+<style type="text/css">
+body {
+  background: #e9e9e9;
+  color: #666666;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Container */
+.container {
+  position: relative;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto 100px;
+}
+.container.active .card:first-child {
+  background: #f2f2f2;
+  margin: 0 15px;
+}
+.container.active .card:nth-child(2) {
+  background: #fafafa;
+  margin: 0 10px;
+}
+/* Card */
+.card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 60px 0 40px 0;
+  box-sizing: border-box;
+  margin: 0rem 0 0rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card:first-child {
+  background: #fafafa;
+  height: 10px;
+  border-radius: 5px 5px 0 0;
+  margin: 0 10px;
+  padding: 0;
+}
+.card .title {
+  position: relative;
+  z-index: 1;
+  border-left: 5px solid rgb(27, 170, 170);
+  margin: 0 0 35px;
+  padding: 10px 0 10px 50px;
+  color: rgb(27, 170, 170);
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.card .info {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 15px;
+  padding: 5px 0 5px 40px;
+  color: rgb(27, 170, 170);
+  font-size: 20px;
+  font-weight: 300;
+}
+.card .input-container {
+  position: relative;
+  margin: 0 40px -10px;
+}
+.card .input-container input {
+  outline: none;
+  z-index: 1;
+  position: relative;
+  background: none;
+  width: 100%;
+  height: 100px;
+  border: 0;
+  color: #212121;
+  font-size: 24px;
+  font-weight: 400;
+}
+.card .input-container input:focus ~ label {
+  color: #9d9d9d;
+  -webkit-transform: translate(-12%, -50%) scale(0.75);
+          transform: translate(-12%, -50%) scale(0.75);
+}
+.card .input-container input:focus ~ .bar:before, .card .input-container input:focus ~ .bar:after {
+  width: 50%;
+}
+.card .input-container input:valid ~ label {
+  color: #9d9d9d;
+  -webkit-transform: translate(-12%, -50%) scale(0.75);
+          transform: translate(-12%, -50%) scale(0.75);
+}
+.card .input-container label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #757575;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 40px;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+.card .input-container .bar {
+  position: absolute;
+  left: 0;
+  bottom: 35px;
+  background: #757575;
+  width: 100%;
+  height: 1px;
+}
+.card .input-container .bar:before, .card .input-container .bar:after {
+  content: '';
+  position: absolute;
+  background: rgb(27, 170, 170);
+  width: 0;
+  height: 2px;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+}
+.card .input-container .bar:before {
+  left: 50%;
+}
+.card .input-container .bar:after {
+  right: 50%;
+}
+.card .button-container {
+  margin: 0 60px;
+  text-align: center;
+}
+.card .button-container button {
+  outline: 0;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: 0;
+  width: 240px;
+  border: 2px solid #e3e3e3;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  overflow: hidden;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card .button-container button span {
+  position: relative;
+  z-index: 1;
+  color: #ddd;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card .button-container button:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: rgb(27, 170, 170);
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin: -15px 0 0 -15px;
+  opacity: 0;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+.card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
+  border-color: rgb(27, 170, 170);
+}
+.card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
+  color: rgb(27, 170, 170);
+}
+.card .button-container button:active span, .card .button-container button:focus span {
+  color: #ffffff;
+}
+.card .button-container button:active:before, .card .button-container button:focus:before {
+  opacity: 1;
+  -webkit-transform: scale(10);
+  transform: scale(10);
+}
+
+</style>
+
+
+
+<html >
+<head>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+</head>
+<body>
+	<%= devise_error_messages! %>
+	<div class="container">
+	  <div class="card"></div>
+	  <div class="card">
+	    <h1 class="title">Forgot Password?</h1>
+	    <h7 class="info">Please enter your email-id to proceed.</h7>
+	    <form action="/users/password" method="post">
+	      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	      <ul>
+
+	      				<div class="input-container">
+			      			<input  id = "email" style="border-bottom: 0px; box-shadow: 0 0px" name="user[email]" type="email-id" class="validate" required="required">
+	                        <label for="a">
+								E-mail
+							</label>
+							<div class="bar"></div>
+						</div>
+
+		  </ul>
+	      <div id="submit-btn-div" class="button-container" type="submit" value="Submit" name="action">
+	        <button><span>Send Reset Link</span></button>
+	      </div>
+	    </form>
+	  </div>
+	</div>
+</body>
+</html>
