@@ -3,8 +3,8 @@
 	@import url(https://fonts.googleapis.com/css?family=Asap);
 	.container 	{
 					opacity: 1;
-				}
-	.rowheader 	{
+				}	
+	.rowheader 	{ 
 					background-color: #e65100;
 					padding:2em;
 					color: #ffe0b2;
@@ -14,7 +14,7 @@
 	.rowbody 	{
 					background-image: linear-gradient(to top, #ffffff, #ffffff);
 					padding:2em;
-					border: 1px;
+					border: 1px; 
 					color:#6a1b9a;
 					font-size: 150%;
 					font-family: Asap;
@@ -222,7 +222,9 @@ body {
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 </head>
 <body>
-	<%= devise_error_messages! %>
+  <% devise_error_messages.each do |message| %>
+    <% puts message %>
+  <% end %>
 	<div class="container">
 	  <div class="card"></div>
 	  <div class="card">
@@ -231,7 +233,6 @@ body {
 	    <form action="/users/password" method="post">
 	      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 	      <ul>
-
 	      				<div class="input-container">
 			      			<input  id = "email" style="border-bottom: 0px; box-shadow: 0 0px" name="user[email]" type="email-id" class="validate" required="required">
 	                        <label for="a">
@@ -239,7 +240,6 @@ body {
 							</label>
 							<div class="bar"></div>
 						</div>
-
 		  </ul>
 	      <div id="submit-btn-div" class="button-container" type="submit" value="Submit" name="action">
 	        <button><span>Send Reset Link</span></button>
