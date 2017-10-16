@@ -14,7 +14,7 @@
 	.rowbody 	{
 					background-image: linear-gradient(to top, #ffffff, #ffffff);
 					padding:2em;
-					border: 1px; 
+					border: 1px;
 					color:#6a1b9a;
 					font-size: 150%;
 					font-family: Asap;
@@ -233,7 +233,6 @@ body {
 	    <form action="/users/password" method="post">
 	      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 	      <ul>
-	      		
 	      				<div class="input-container">
 			      			<input  id = "email" style="border-bottom: 0px; box-shadow: 0 0px" name="user[email]" type="email-id" class="validate" required="required">
 	                        <label for="a">
@@ -241,7 +240,6 @@ body {
 							</label>
 							<div class="bar"></div>
 						</div>
-					
 		  </ul>
 	      <div id="submit-btn-div" class="button-container" type="submit" value="Submit" name="action">
 	        <button><span>Send Reset Link</span></button>
