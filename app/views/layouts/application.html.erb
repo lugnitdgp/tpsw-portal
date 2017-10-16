@@ -47,7 +47,10 @@
     font-weight: 600;
     text-decoration: none;
   }
-
+  @media screen and (max-width: 600px) {
+  .nav-wrapper a.hidemee {display: none;}
+  .nav-wrapper a.showmee {padding: 1em;}
+} 
 </style>
 
 
@@ -55,7 +58,6 @@
 
 <html>
   <head>
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
     <title>TPSW</title>
@@ -71,7 +73,8 @@
     <div>
       <nav style="background-color: rgb(27, 170, 170);">
         <div class="nav-wrapper">
-          <a href="/"><font style="font-size: 200%; padding: 1em"> NIT Durgapur Placement Portal</font></a>
+          <a class="hidemee" href="/" style="font-size:150%;padding-left:1em; padding-top:1em;padding-bottom: 1em;">NIT Durgapur</a>
+          <a href="/" class="showmee" style="font-size:150%;">Placement Portal</a>
           <ul id="dropdown1" class="dropdown-content">
             <% if current_user!=nil %>  
               <% if current_user.roles_mask == 1 %>
@@ -82,13 +85,12 @@
             <li class="divider"></li>
             <li> <%= link_to destroy_user_session_path, method: :delete do %>Sign Out<% end %></li>
           </ul>
-
-          <ul id="nav-mobile" class="right hide-on-med-and-down">  
-            <li style="font-size: 150%">
+          <ul id="nav-mobile" class="right">  
+            <li style="font-size: 150%; background-color:rgb(27, 170, 170)">
             <% if current_user!=nil %>
               <%= current_user.name %>  
             <% else %>
-              <%= link_to new_user_session_path do %>Log in/Sign up<% end %>
+              <%= link_to new_user_session_path do %> Log in/Sign up <% end %>
             <% end %>
             </li>
             <% if current_user!=nil %>
