@@ -20,7 +20,7 @@ class Company
   has_many :registrations
 
   def assign_uid
-    self.u_id=User.last.u_id + 1
+    self.u_id = Company.last.u_id + 1
   end
 
   def add_fields_to_user
