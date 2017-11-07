@@ -19,8 +19,9 @@ class User
   field :dept,                  type: String, default: ""
   field :phone,                 type: String, default: ""
   field :pan_no,                type: String, default: ""
-  field :placed_at,             type: String, default: ""
   field :ug_pg,                 type: String, default: ""
+  field :mass_placed,           type: Integer
+  field :single_placed,         type: Integer
 
   field :u_id,                  type: Integer, default: ""
   field :encrypted_password,    type: String, default: ""

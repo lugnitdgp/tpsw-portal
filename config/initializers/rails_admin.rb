@@ -1,4 +1,5 @@
 require Rails.root.join('lib', 'rails_admin', 'finalize_students.rb')
+require Rails.root.join('lib', 'rails_admin', 'dashboard.rb')
 RailsAdmin::Config::Actions.register(MyApp::Admin::Actions::FinalizeStudents)
 
 RailsAdmin.config do |config|

@@ -1,0 +1,39 @@
+<h1> Welcome Admin</h1>
+<h4><a href="/admin/company/new">Add Company</a></h4>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Add Offers</button>
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Offers</h4>
+      </div>
+      <div class="modal-body" id="placement_table_wrapper">
+        <form action="/admin/add_offer" method="post">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+          <div class="input-field col xl4">
+            <label>Company</label>
+            <select name="company" onmousedown="if(this.options.length>5){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;">
+            <option value="" disabled selected>Choose a Company</option>
+              <% companies = Company.all %>
+              <% companies.each do |company| %>
+                <option value="<%= company.name %>"><%= company.name%></option>
+              <% end %>
+            </select>
+          </div>
+
+          <div class="input-field col s6">
+            <label for="roll_nos">Roll No of Selected Students</label><br />
+            <input id="roll_nos" name="roll_nos" type="text" class="validate">
+          </div>
+
+          <input type="submit" value="Add Offer">
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

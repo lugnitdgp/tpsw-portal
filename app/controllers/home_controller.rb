@@ -17,7 +17,7 @@ class HomeController < ApplicationController
       year = roll_no.split("/").first.to_i
       company = Company.find_by(u_id: params[:company_uid])
       if (year==15 and company.intern) or (year==14 and company.placement)
-        if current_user.placed_at.blank?
+        if (company.company_type=="Mass" and current_user.mass_placed==nil) or (company.company_type=="Single" and current_user.single_placed==nil)
           if company.departments.include?(current_user.dept)
             r=Registration.where(user_id: current_user._id,company_id: company._id)
             if r.blank?

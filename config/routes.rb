@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   authenticate :user, ->(user) { user.roles_mask == 1 } do
+    post '/admin/add_offer' => 'add_offer#placed'
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
   # devise_for :users
