@@ -13,6 +13,7 @@ class Company
   field :start_time,                  type: DateTime
   field :end_time,                    type: DateTime
   field :u_id,                        type: Integer
+  field :company_type,                type: String, default: ""
 
   after_save :add_fields_to_user
   validates_presence_of :name, :departments, :columns, :start_time, :end_time

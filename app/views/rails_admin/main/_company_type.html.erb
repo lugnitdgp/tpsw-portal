@@ -1,0 +1,7 @@
+<% if  @object.company_type == "Mass" %>
+  <input type="radio" name="company[company_type]" checked="checked"> Mass<br>
+  <input type="radio" name="company[company_type]"> Single<br>
+<% else %>
+  <input type="radio" name="company[company_type]"> Mass<br>
+  <input type="radio" name="company[company_type]" checked="checked"> Single<br>
+<% end %>

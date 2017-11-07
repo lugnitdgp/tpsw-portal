@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     current = Company.where(:start_time=>{:$lte=>DateTime.now+5.hours+30.minutes}, :end_time=>{:$gte=>DateTime.now+5.hours+30.minutes}).to_a
     @companies = []
     current.each do |c|
-      @companies << {u_id: c.u_id,name:c.name,offer: c.offer,description: c.description,departments: c.departments,intern: c.intern,placement:c.placement}
+      @companies << {u_id: c.u_id,company_type: c.company_type, name:c.name,offer: c.offer,description: c.description,departments: c.departments,intern: c.intern,placement:c.placement}
     end
   end
 

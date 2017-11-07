@@ -12,6 +12,9 @@ RailsAdmin.config do |config|
       field :departments do
         partial 'departments'
       end
+      field :company_type do
+        partial 'company_type'
+      end
     end
   end
 
