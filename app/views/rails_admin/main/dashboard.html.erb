@@ -1,3 +1,14 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<style>
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 250px;
+    overflow-y: auto;
+}
+</style>
+
 <h1> Welcome Admin</h1>
 <h4><a href="/admin/company/new">Add Company</a></h4>
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Add Offers</button>
@@ -35,5 +46,83 @@
       </div>
     </div>
 
+  </div>
+</div>
+</br>
+</br>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Generate Placement Statistics</button>
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Placement Statics</h4>
+      </div>
+      <div class="modal-body" id="statics_table_wrapper">
+        <% companies = Company.all %>
+        <% depts = ["BT", "CE", "CH", "CS", "EE", "EC", "IT", "ME", "MM"] %>
+        <table class="table">
+          <tr>
+            <th>Company</th>
+            <% depts.each do |dept| %>
+              <th><%= dept %></th>
+            <% end %>
+          </tr>
+          <% companies.each do |company| %>
+            <tr>
+              <td><%= company.name %></td>
+              <% depts.each do |dept| %>
+                <% if company.departments.include?(dept) %>
+                  <td><%= company.fte_offers[dept] %></td>
+                <% else %>
+                  <td>-</td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</br>
+<br/>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModa3">Generate Intern Statistics</button>
+<div id="myModa3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Placement Statics</h4>
+      </div>
+      <div class="modal-body" id="statics_table_wrapper">
+        <% companies = Company.all %>
+        <% depts = ["BT", "CE", "CH", "CS", "EE", "EC", "IT", "ME", "MM"] %>
+        <table class="table">
+          <tr>
+            <th>Company</th>
+            <% depts.each do |dept| %>
+              <th><%= dept %></th>
+            <% end %>
+          </tr>
+          <% companies.each do |company| %>
+            <tr>
+              <td><%= company.name %></td>
+              <% depts.each do |dept| %>
+                <% if company.departments.include?(dept) %>
+                  <td><%= company.intern_offers[dept] %></td>
+                <% else %>
+                  <td>-</td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

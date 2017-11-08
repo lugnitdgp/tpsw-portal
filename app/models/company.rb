@@ -14,6 +14,8 @@ class Company
   field :end_time,                    type: DateTime
   field :u_id,                        type: Integer
   field :company_type,                type: String, default: ""
+  field :fte_offers,                  type: Hash, default: {BT:0, CE:0, CH:0, CS:0, EC:0, EE:0, IT:0, ME:0, MM:0}
+  field :intern_offers,               type: Hash, default: {BT:0, CE:0, CH:0, CS:0, EC:0, EE:0, IT:0, ME:0, MM:0}
 
   after_save :add_fields_to_user
   validates_presence_of :name, :departments, :columns, :start_time, :end_time

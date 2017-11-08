@@ -10,14 +10,18 @@ class AddOfferController < ApplicationController
         if year == 14
           if company.company_type == "Mass"
             student.mass_placed = company.u_id
+            company.fte_offers[student.dept]+=1
           else
             student.single_placed = company.u_id
+            company.fte_offers[student.dept]+=1
           end
         else
           student.mass_placed = company.u_id
           student.single_placed = company.u_id
+          company.intern_offers[student.dept]+=1
         end
         student.save
+        company.save
       end
       flash[:notice] = "Offer added"
       redirect_to rails_admin_path
