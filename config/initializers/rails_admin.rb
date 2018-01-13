@@ -6,7 +6,7 @@ RailsAdmin.config do |config|
 
   config.model Company do
     edit do
-      exclude_fields :c_at, :u_id, :registrations
+      exclude_fields :c_at, :u_id, :registrations, :fte_offers, :intern_offers
       field :columns do
         partial 'columns'
       end
