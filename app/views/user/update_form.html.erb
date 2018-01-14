@@ -261,13 +261,19 @@ body {
 							</label>
 							<div class="bar"></div>
 						</div>
-						<% elsif field == "cgpa" %>
-				      		<div class="input-container">
-				      			<input placeholder="e.g 7.56" id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
-		                        <label for="user[<%=field%>]">
-									<font>CGPA
-									 	<span class="req">*</span>
-									</font>
+					<% elsif field == "cgpa" %>
+				    <div class="input-container">
+				    	<input placeholder="e.g 7.56" id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
+		        	<label for="user[<%=field%>]">
+								<font>CGPA<span class="req">*</span></font>
+							</label>
+							<div class="bar"></div>
+						</div>
+						<% elsif field == "ug_pg" %>
+							<div class="input-container">
+								<input placeholder="UG" id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
+								<label for="user[<%=field%>]">
+									<font>UG/PG<span class="req">*</span></font>
 								</label>
 								<div class="bar"></div>
 							</div>
@@ -276,13 +282,13 @@ body {
 							<font style="font-size:24px;font-weight:300;"><%= field.split('_').map(&:capitalize).join(' ') %>
 								<span class="req">*</span>
 							</font>
-							<input type="text" class="datepicker">
+							<input type="text" class="datepicker" name="user[date_of_birth]">
 						</div>
 						<% elsif field == "dept" %>
 							<div style="margin: 0 40px 10px ;">
 								<font style="font-size:24px;font-weight:300;">Department<span class="req">*</span></font>
 								<div class="input-field col s12">
-							    <select>
+							    <select id="dept">
 							      <option value="" disabled selected></option>
 							      <option value="BT">BT</option>
 							      <option value="CE">CE</option>
@@ -296,6 +302,7 @@ body {
 							    </select>
 							  </div>
 							</div>
+							<input type="text" name="user[dept]" id="dept-hidden" hidden/>
 							<div class="bar"></div>
 					<% else %>
 			      		<div class="input-container">
@@ -325,6 +332,10 @@ $('.datepicker').pickadate({
     selectYears: 50, // Creates a dropdown of 15 years to control year
 		min: d,
 		max: new Date()
+});
+
+$("#dept").on('change', function() {
+        $('#dept-hidden').val($('.select-dropdown').val());
 });
 
 $(document).ready(function() {

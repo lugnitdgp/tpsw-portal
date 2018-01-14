@@ -1,7 +1,8 @@
 <script>
   function editfunc() {
 			event.preventDefault();
-			$("input").prop('disabled', false);
+			$(".inputs").prop('disabled', false);
+      $('#dept').removeAttr('disabled')
 			var divx = document.getElementById("submit-btn-div");
 			divx.style.display = "block";
 	}
@@ -192,9 +193,9 @@ body {
 <html >
 <head>
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
-  
+
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-  
+
 </head>
 
 <body>
@@ -206,24 +207,122 @@ body {
 	    <form action="/user/update_form" method="post">
 	      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 	      <ul>
-	      		<% @info.each do |key,value| %>
-		      		<div class="input-container">
-		      			<input type="text" style="border-bottom: 0px; box-shadow: 0 0px" id = "inputs" name="user[<%= key %>]" value="<%= value %>" class="validate" disabled="true" required="required"/>
-						<label for="<%= key %>">
-							<font><%= key.split('_').map(&:capitalize).join(' ') %></font>
-						</label>
-						<div class="bar"></div>
-					</div>
-				<% end %>
-		  </ul>
+	        <% @info.each do |field,value| %>
+          <% if field == "roll_no"%>
+            <div class="input-container">
+              <input placeholder="15/IT/XX" value="<%= value%>" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate inputs" disabled="true" required="required">
+              <label for="user[<%=field%>]">
+                <font><%= field.split('_').map(&:capitalize).join(' ') %><span class="req">*</span></font>
+              </label>
+              <div class="bar"></div>
+            </div>
+            <% elsif field == "phone" %>
+                  <div class="input-container">
+                    <input placeholder="10 digit" value="<%= value %>" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate inputs" disabled="true" required="required">
+                            <label for="user[<%=field%>]">
+                  <font><%= field.split('_').map(&:capitalize).join(' ') %>
+                    <span class="req">*</span>
+                  </font>
+                </label>
+                <div class="bar"></div>
+              </div>
+            <% elsif field == "sgpa" %>
+                  <div class="input-container">
+                    <input placeholder="e.g 7.88 8.72 8.62 9.23" value="<%= value %>" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate inputs" disabled="true" required="required">
+                            <label for="user[<%=field%>]">
+                  <font>SGPA
+                    <span class="req">*</span>
+                  </font>
+                </label>
+                <div class="bar"></div>
+              </div>
+              <% elsif field == "cgpa" %>
+                    <div class="input-container">
+                      <input placeholder="e.g 7.56"  value="<%= value %>" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate inputs" disabled="true" required="required">
+                              <label for="user[<%=field%>]">
+                    <font>CGPA
+                      <span class="req">*</span>
+                    </font>
+                  </label>
+                  <div class="bar"></div>
+                </div>
+            <% elsif field == "date_of_birth" %>
+              <div style="margin: 0 40px 10px;">
+                <font style="font-size:24px;font-weight:300;"><%= field.split('_').map(&:capitalize).join(' ') %>
+                  <span class="req">*</span>
+                </font>
+                <input type="text" name="user[date_of_birth]" class="datepicker inputs" disabled="true">
+              </div>
+              <% elsif field == "ug_pg" %>
+                <div class="input-container">
+                  <input value="<%= value %>" id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate inputs" disabled="true" required="required">
+                  <label for="user[<%=field%>]">
+                    <font>UG/PG<span class="req">*</span></font>
+                  </label>
+                  <div class="bar"></div>
+                </div>
+              <% elsif field == "dept" %>
+                <div style="margin: 0 40px 10px ;">
+                  <font style="font-size:24px;font-weight:300;">Department<span class="req">*</span></font>
+                  <div class="input-field col s12">
+                    <select id="dept">
+                      <option value="" disabled selected></option>
+                      <option value="BT">BT</option>
+                      <option value="CE">CE</option>
+                      <option value="CH">CH</option>
+                      <option value="CS">CS</option>
+                      <option value="EC">EC</option>
+                      <option value="EE">EE</option>
+                      <option value="IT">IT</option>
+                      <option value="ME">ME</option>
+                      <option value="MM">MM</option>
+                    </select>
+                  </div>
+                </div>
+                <input type="text" name="user[dept]" value="<%= value %>" id="dept-hidden" hidden/>
+                <div class="bar"></div>
+
+            <% else %>
+              <div class="input-container">
+  		      	  <input type="text" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%= field %>]" value="<%= value %>" class="inputs" class="validate" disabled="true" required="required"/>
+  					    <label for="<%= field %>">
+  						    <font><%= field.split('_').map(&:capitalize).join(' ') %></font>
+  					    </label>
+  					  <div class="bar"></div>
+  					 </div>
+           <% end %>
+				  <% end %>
+		    </ul>
 	      <div id="submit-btn-div" class="button-container" style="display: none" type="submit" value="Submit" name="action">
 	        <button id="submit-btn"><span>Update Profile</span></button>
 	      </div>
-	     
 	    </form>
-
-
 	  </div>
 	</div>
 </body>
+<script>
+var d = new Date();
+d.setFullYear( d.getFullYear() - 50 );
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 50, // Creates a dropdown of 15 years to control year
+		min: d,
+		max: new Date(),
+    format: 'dd/mm/yyyy'
+});
+
+$("#dept").on('change', function() {
+        $('#dept-hidden').val($('.select-dropdown').val());
+});
+
+$(document).ready(function() {
+    $('select').material_select();
+    $('#dept').val("<%= @info["dept"] %>");
+    $('#dept').material_select();
+
+    var $input = $('.datepicker').pickadate();
+    var picker = $input.pickadate('picker');
+    picker.set('select', "<%= @info["date_of_birth"] %>", { format: 'dd/mm/yyyy' });
+});
+</script>
 </html>
