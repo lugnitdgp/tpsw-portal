@@ -5,6 +5,12 @@ RailsAdmin::Config::Actions.register(MyApp::Admin::Actions::FinalizeStudents)
 RailsAdmin.config do |config|
 
   config.model Company do
+    list do
+      exclude_fields :_id
+      fields :c_at do
+        label "Created At"
+      end
+    end
     edit do
       exclude_fields :c_at, :u_id, :registrations, :fte_offers, :intern_offers
       field :columns do
@@ -19,6 +25,16 @@ RailsAdmin.config do |config|
     end
   end
 
+ config.model User do
+   list do
+     exclude_fields :_id
+     fields :c_at do
+       label "Created At"
+     end
+   end
+ end
+
+ config.excluded_models << "Registration"
   ### Popular gems integration
 
   # == Devise ==

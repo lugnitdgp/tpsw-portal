@@ -3,8 +3,8 @@
 	@import url(https://fonts.googleapis.com/css?family=Asap);
 	.container 	{
 					opacity: 1;
-				}	
-	.rowheader 	{ 
+				}
+	.rowheader 	{
 					background-color: #e65100;
 					padding:2em;
 					color: #ffe0b2;
@@ -14,7 +14,7 @@
 	.rowbody 	{
 					background-image: linear-gradient(to top, #ffffff, #ffffff);
 					padding:2em;
-					border: 1px; 
+					border: 1px;
 					color:#6a1b9a;
 					font-size: 150%;
 					font-family: Asap;
@@ -255,12 +255,48 @@ body {
 			      		<div class="input-container">
 			      			<input placeholder="e.g 7.88 8.72 8.62 9.23" id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
 	                        <label for="user[<%=field%>]">
-								<font><%= field.split('_').map(&:capitalize).join(' ') %>
+								<font>SGPA
 								 	<span class="req">*</span>
 								</font>
 							</label>
 							<div class="bar"></div>
 						</div>
+						<% elsif field == "cgpa" %>
+				      		<div class="input-container">
+				      			<input placeholder="e.g 7.56" id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
+		                        <label for="user[<%=field%>]">
+									<font>CGPA
+									 	<span class="req">*</span>
+									</font>
+								</label>
+								<div class="bar"></div>
+							</div>
+					<% elsif field == "date_of_birth" %>
+						<div style="margin: 0 40px 10px;">
+							<font style="font-size:24px;font-weight:300;"><%= field.split('_').map(&:capitalize).join(' ') %>
+								<span class="req">*</span>
+							</font>
+							<input type="text" class="datepicker">
+						</div>
+						<% elsif field == "dept" %>
+							<div style="margin: 0 40px 10px ;">
+								<font style="font-size:24px;font-weight:300;">Department<span class="req">*</span></font>
+								<div class="input-field col s12">
+							    <select>
+							      <option value="" disabled selected></option>
+							      <option value="BT">BT</option>
+							      <option value="CE">CE</option>
+							      <option value="CH">CH</option>
+										<option value="CS">CS</option>
+										<option value="EC">EC</option>
+										<option value="EE">EE</option>
+										<option value="IT">IT</option>
+										<option value="ME">ME</option>
+										<option value="MM">MM</option>
+							    </select>
+							  </div>
+							</div>
+							<div class="bar"></div>
 					<% else %>
 			      		<div class="input-container">
 			      			<input id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
@@ -281,4 +317,18 @@ body {
 	  </div>
 	</div>
 </body>
+<script>
+var d = new Date();
+d.setFullYear( d.getFullYear() - 50 );
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 50, // Creates a dropdown of 15 years to control year
+		min: d,
+		max: new Date()
+});
+
+$(document).ready(function() {
+    $('select').material_select();
+});
+</script>
 </html>

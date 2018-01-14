@@ -349,13 +349,13 @@ body {
 <html >
 <head>
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
-  
+
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-  
+
 </head>
 
 <body>
-  
+
 <div class="container">
   <div class="card"></div>
   <div class="card">
@@ -376,7 +376,7 @@ body {
         <div class="bar"></div>
       </div>
       <div class="button-container" type="submit" value="Submit" name="action">
-        <button><span>Go</span></button>
+        <button><span>Sign In</span></button>
       </div>
       <div class="footer"><a href="/users/password/new">Forgot your password?</a></div>
     </form>
@@ -398,8 +398,10 @@ body {
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input value="eg. 15/IT/XX" type="text" id="roll_no" style="border-bottom: 0px; box-shadow: 0 0px" name="user[roll_no]" required="required"/>
-        <label for="roll_no">Roll Number</label>
+        <!-- <input placeholder="eg. 15/IT/XX" type="text" id="roll_no" style="border-bottom: 0px; box-shadow: 0 0px" name="user[roll_no]" required="required"/> -->
+        <!-- <label for="roll_no">Roll Number</label> -->
+        <input placeholder="eg. 15/IT/XX" id="first_name" name="user[roll_no]"type="text" class="validate">
+          <label for="first_name">Roll No</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
@@ -413,13 +415,13 @@ body {
         <div class="bar"></div>
       </div>
       <div class="button-container">
-        <button><span>Next</span></button>
+        <button><span>Sign Up</span></button>
       </div>
     </form>
 
   </div>
 </div>
-  
+
 
 
 
