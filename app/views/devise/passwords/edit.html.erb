@@ -3,8 +3,8 @@
   @import url(https://fonts.googleapis.com/css?family=Asap);
   .container  {
           opacity: 1;
-        } 
-  .rowheader  { 
+        }
+  .rowheader  {
           background-color: #e65100;
           padding:2em;
           color: #ffe0b2;
@@ -14,7 +14,7 @@
   .rowbody  {
           background-image: linear-gradient(to top, #ffffff, #ffffff);
           padding:2em;
-          border: 1px; 
+          border: 1px;
           color:#6a1b9a;
           font-size: 150%;
           font-family: Asap;
@@ -227,7 +227,7 @@ body {
     <div class="card"></div>
     <div class="card">
       <h1 class="title">Forgot Password?</h1>
-      <h7 class="info">Please enter your email-id to proceed.</h7>
+      <h7 class="info">Please enter your new password to proceed.</h7>
       <form action="/users/password" method="post">
         <input type="hidden" name="_method" value="put" />
 
@@ -236,30 +236,39 @@ body {
         <input type="hidden" value="<%= params[:reset_password_token] %>" name="user[reset_password_token]" id="user_reset_password_token" />
         <ul>
             <div class="input-container">
-              <input type="password" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password]" required="required"/>
+              <input type="password" onkeyup="validate()" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password]" required="required"/>
                 <label for="password">Password</label>
                 <div class="bar"></div>
             </div>
             <div class="input-container">
-              <input type="password" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password_confirmation]" required="required"/>
+              <input type="password" onkeyup="validate()" minlength="6" id="conf_password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password_confirmation]" required="required"/>
                 <label for="password">Confirm Password</label>
                 <div class="bar"></div>
               </div>
       </ul>
         <div id="submit-btn-div" class="button-container" type="submit" value="Submit" name="action">
-          <button><span>Change</span></button>
+          <button id="submit-button"><span id=stat>Change Password</span></button>
         </div>
       </form>
     </div>
   </div>
 </body>
+<script>
+function validate() {
+    var password1 = $("#password").val();
+    var password2 = $("#conf_password").val();
+    if(password1 == password2 && password1 != null && password1 != "") {
+         $('#submit-button').prop('disabled', false);
+         $("#stat").html("Change Password");
+    }
+    else {
+         $("#stat").html("Passwords do not match");
+         $('#submit-button').prop('disabled', true);
+    }
+}
+
+$(document).ready(function() {
+  $("#submit-button").prop('disabled',true);
+});
+</script>
 </html>
-
-
-
-
-
-
-
-
-
