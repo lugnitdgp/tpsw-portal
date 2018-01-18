@@ -405,17 +405,17 @@ body {
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password]" required="required"/>
+        <input type="password" minlength="6" onkeup="validate()" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password]" required="required"/>
         <label for="password">Password</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" minlength="6" id="password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password_confirmation]" required="required"/>
+        <input type="password" minlength="6" onkeyup="validate()" id="conf_password" style="border-bottom: 0px; box-shadow: 0 0px" name="user[password_confirmation]" required="required"/>
         <label for="password">Confirm Password</label>
         <div class="bar"></div>
       </div>
       <div class="button-container">
-        <button><span>Sign Up</span></button>
+        <button id="submit-button"><span id="stat" style="padding:1em;">Sign Up</span></button>
       </div>
     </form>
 
@@ -428,6 +428,22 @@ body {
 
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script >
+  function validate() {
+      var password1 = $("#password").val();
+      var password2 = $("#conf_password").val();
+      if(password1 == password2 && password1 != null && password1 != "") {
+           $('#submit-button').prop('disabled', false);
+           $("#stat").html("Change Password");
+      }
+      else {
+           $("#stat").html("Passwords do not match");
+           $('#submit-button').prop('disabled', true);
+      }
+  }
+
+  $(document).ready(function() {
+    $("#submit-button").prop('disabled',true);
+  });
       $('.toggle').on('click', function() {
       $('.container').stop().addClass('active');
       });
