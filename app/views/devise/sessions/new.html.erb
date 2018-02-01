@@ -366,12 +366,12 @@ body {
     <form action="/users/sign_in" method="post">
       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <div class="input-container">
-        <input type="email" style="border-bottom: 0px; box-shadow: 0 0px" id="email" name="user[email]" required="required"/>
+        <input type="email" style="border-bottom: 0px; box-shadow: 0 0px" id="sign_in_email" name="user[email]" required="required"/>
         <label for="email">E-mail ID</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" style="border-bottom: 0px; box-shadow: 0 0px" id="password" name="user[password]"  required="required"/>
+        <input type="password" style="border-bottom: 0px; box-shadow: 0 0px" id="sign_in_password" name="user[password]"  required="required"/>
         <label for="password">Password</label>
         <div class="bar"></div>
       </div>
@@ -433,7 +433,7 @@ body {
       var password2 = $("#conf_password").val();
       if(password1 == password2 && password1 != null && password1 != "") {
            $('#submit-button').prop('disabled', false);
-           $("#stat").html("Change Password");
+           $("#stat").html("Sign Up");
       }
       else {
            $("#stat").html("Passwords do not match");
