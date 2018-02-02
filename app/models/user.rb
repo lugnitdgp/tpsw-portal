@@ -11,6 +11,8 @@ class User
   ## Database authenticatable
   field :email,                 type: String, default: ""
   field :name,                  type: String, default: ""
+  field :date_of_birth,         type: String, default: ""
+  field :college,               type: String, default: ""
   field :roll_no,               type: String, default: ""
   field :cgpa,                  type: String, default: ""
   field :present_address,       type: String, default: ""

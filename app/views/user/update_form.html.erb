@@ -304,6 +304,16 @@ body {
 							</div>
 							<input type="text" name="user[dept]" id="dept-hidden" hidden/>
 							<div class="bar"></div>
+							<% elsif field == "college" %>
+								<div style="margin: 0 40px 10px ;">
+									<font style="font-size:24px;font-weight:300;">College<span class="req">*</span></font>
+									<div class="input-field col s12">
+								    <select id="college">
+								    </select>
+								  </div>
+								</div>
+								<input type="text" name="user[college]" id="college-hidden" hidden/>
+								<div class="bar"></div>
 					<% else %>
 			      		<div class="input-container">
 			      			<input id = "user[<%=field%>]" style="border-bottom: 0px; box-shadow: 0 0px" name="user[<%=field%>]" type="text" class="validate" required="required">
@@ -325,6 +335,21 @@ body {
 	</div>
 </body>
 <script>
+
+var colleges = {
+	'c1':"NIT Durgapur",
+	'c2':"NIT Jamshedpur",
+	'c3':"NIT Rourkela",
+	'c4':"NIT Trichy",
+	'c5':"NIT Patna",
+	'c6':"NIT Raipur",
+	'c7':"MANIT Bhopal",
+	'c8':"NIT Silchar",
+	'c9':"NIT Warangal",
+	'c10':"NIT Durgapur",
+	'c11':"NIT Jamshedpur",
+	'c12':"NIT Rourkela"
+};
 var d = new Date();
 d.setFullYear( d.getFullYear() - 50 );
 $('.datepicker').pickadate({
@@ -335,11 +360,20 @@ $('.datepicker').pickadate({
 });
 
 $("#dept").on('change', function() {
-        $('#dept-hidden').val($('.select-dropdown').val());
+        $('#dept-hidden').val($(this).val());
+});
+
+$("#college").on('change', function() {
+        $('#college-hidden').val($(this).val());
 });
 
 $(document).ready(function() {
     $('select').material_select();
+		$('#college').append($("<option></option>").attr("value","").text(""));
+		$.each(colleges, function(key, value) {
+			$('#college').append($("<option></option>").attr("value", value).text(value));
+		});
+		$("#college").material_select();
 });
 </script>
 </html>
